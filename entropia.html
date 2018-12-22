@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 
-// entropy.js MIT License © 2014 James Abney http://github.com/jabney
+// entropy.js MIT License Â© 2014 James Abney http://github.com/jabney
 
 // Calculate the Shannon entropy of a string in bits per symbol.
 (function(shannon) {
@@ -40,7 +40,6 @@
     console.log('Entropy of "' + s + '" in bits per symbol:', shannon.entropy(s));
   };
   
-document.getElementById("resultado").innerHTML = sum;
   
 })(window.shannon = window.shannon || Object.create(null));
  
@@ -62,8 +61,9 @@ shannon.log('0123456789abcdef'); // 4
 
 <form >
 <textarea name="st" rows="5" cols="80"></textarea><br />
-<input type="button" name="test" onclick="return process()" value="calcular">
+<input type="button" name="test" onclick="process()" value="calcular">
 </form>
-<div id="resultado"></div>
+	
+<div id="resultado"></div> // muestra el resultado
 </body>
 </html>
