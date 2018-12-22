@@ -1,0 +1,69 @@
+<html>
+<title> entropia</title>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+// entropy.js MIT License © 2014 James Abney http://github.com/jabney
+
+// Calculate the Shannon entropy of a string in bits per symbol.
+(function(shannon) {
+'use strict';
+
+  // Create a dictionary of character frequencies and iterate over it.
+  function process(s, evaluator) {
+    var h = Object.create(null), k;
+    s.split('').forEach(function(c) {
+      h[c] && h[c]++ || (h[c] = 1); });
+    if (evaluator) for (k in h) evaluator(k, h[k]);
+    return h;
+  };
+  
+  // Measure the entropy of a string in bits per symbol.
+  shannon.entropy = function(s) {
+    var sum = 0,len = s.length;
+    process(s, function(k, f) {
+      var p = f/len;
+      sum -= p * Math.log(p) / Math.log(2);
+    });
+    return sum;
+  };
+  
+  // Measure the entropy of a string in total bits.
+  shannon.bits = function(s) {
+    return shannon.entropy(s) * s.length;
+  };
+  
+  // Log the entropy of a string to the console.
+  shannon.log = function(s) {
+    console.log('Entropy of "' + s + '" in bits per symbol:', shannon.entropy(s));
+  };
+  
+document.getElementById("resultado").innerHTML = sum;
+  
+})(window.shannon = window.shannon || Object.create(null));
+ 
+shannon.log('1223334444');          // 1.8464393446710154
+shannon.log('0');                   // 0
+shannon.log('01');                  // 1
+shannon.log('0123');                // 2
+shannon.log('01234567');            // 3
+shannon.log('0123456789abcdef'); // 4
+
+
+	
+</script>
+</head>
+
+
+<body>
+
+
+<form >
+<textarea name="st" rows="5" cols="80"></textarea><br />
+<input type="button" name="test" onclick="return process()" value="calcular">
+</form>
+<div id="resultado"></div>
+</body>
+</html>
